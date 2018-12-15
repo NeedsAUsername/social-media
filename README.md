@@ -41,6 +41,6 @@ Routes/Pages to create in React, with endpoints in Express API to fetch info:
 - Connected MongoDB
 - Set Up User Auth in Express with JWT and Passport
 - Set Up User Authentication in React side
-  - login/signup forms working
+  - login/signup/logout forms working
   - stores token in local storage and include in header
   - fetches user on app mount if local storage has token
