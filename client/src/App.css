@@ -15,3 +15,8 @@
   margin: 10px;
   text-decoration: none;
 }
+
+/* add other layout above */
+@supports (display: grid) {
+/* add grid css here */
+}
