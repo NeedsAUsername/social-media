@@ -5,6 +5,16 @@ const jwt = require('jsonwebtoken');
 mongoose.set('useCreateIndex', true);
 mongoose.connect('mongodb:' + process.env.MONGO_URI, { useNewUrlParser: true });
 
+let PostSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true
+  },
+  content: {
+    type: String,
+    required: true
+  }
+})
 let UserSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -14,6 +24,9 @@ let UserSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true
+  },
+  posts: {
+    type: [PostSchema]
   },
   // user's password will be converted into hash and salt
   hash: String,
