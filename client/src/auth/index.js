@@ -20,7 +20,6 @@ class Auth extends React.Component {
       formShown: form
     }, () => console.log(this.state))
   }
-  // later move to redux/mobx/etc. b/c right now, we need to refresh to see the new user, since our users component and auth component don't share state.
   formAction = (formState) => {
     if (this.state.formShown === "signup") {
       this.props.signup(formState);
@@ -43,7 +42,7 @@ class Auth extends React.Component {
     </React.Fragment>
   )
   renderForm = () => (
-    <AuthInput title={this.state.formShown} formAction={this.formAction} hide={this.hide}/>
+    <AuthInput title={this.state.formShown} formShown={this.state.formShown} formAction={this.formAction} hide={this.hide}/>
   )
   render () {
     //ToDo: Make button logout

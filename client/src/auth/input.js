@@ -21,6 +21,14 @@ class authInput extends React.Component {
       password: ""
     })
   }
+  // show if sign up form
+  renderName = () => (
+    <React.Fragment >
+      <label htmlFor="name">Name</label>
+      <input id="name" type="text" name="name"
+        value={this.state.name} onChange={this.handleChange}/>
+    </React.Fragment>
+  )
   render () {
     return (
       <React.Fragment>
@@ -31,9 +39,7 @@ class authInput extends React.Component {
           <input id="email" type="email" name="email"
             value={this.state.email} onChange={this.handleChange}/>
 
-          <label htmlFor="name">Name</label>
-          <input id="name" type="text" name="name"
-            value={this.state.name} onChange={this.handleChange}/>
+          {this.props.formShown === "login" ? null : this.renderName()}
 
           <label htmlFor="password">Password</label>
           <input id="password" type="password" name="password"
