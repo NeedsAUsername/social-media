@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 import './App.css';
 import Users from './users';
+import Posts from './posts';
 import Auth from './auth';
 import Navbar from './components/navbar';
 import {fetchUsers} from './actions/users/fetchUsers';
@@ -23,7 +24,7 @@ class App extends Component {
       <Router>
         <div className="app">
           <Navbar />
-          <Route exact path='/' component={Users} />
+          <Route exact path='/' component={Posts} />
           <Route exact path='/account' component={Auth} />
         </div>
       </Router>
