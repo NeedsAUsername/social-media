@@ -24,6 +24,7 @@ function usersReducer(state = {
       return {...state, signingUp: true}
 
     case 'SIGN_UP':
+      alert('Signed Up successfully. Login now')
       return {...state, signingUp: false, usersList: [...state.usersList, action.payload]}
 
     default:
