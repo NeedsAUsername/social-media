@@ -17,7 +17,8 @@ class authInput extends React.Component {
     this.props.formAction(this.state);
     this.setState({
       email: "",
-      name: ""
+      name: "",
+      password: ""
     })
   }
   render () {
@@ -35,7 +36,7 @@ class authInput extends React.Component {
             value={this.state.name} onChange={this.handleChange}/>
 
           <label htmlFor="password">Password</label>
-          <input id="password" type="text" name="password"
+          <input id="password" type="password" name="password"
             value={this.state.password} onChange={this.handleChange}/>
 
           <input type="submit" />
