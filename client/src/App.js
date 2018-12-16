@@ -26,6 +26,7 @@ class App extends Component {
           <Navbar />
           <Route exact path='/' component={Posts} />
           <Route exact path='/account' component={Auth} />
+          <Route exact path='/users' component={Users} />
         </div>
       </Router>
     );
