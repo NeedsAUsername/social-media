@@ -25,7 +25,7 @@ $ npm run dev
 
 to connect to mongo shell in terminal:
 $ mongo ds229878.mlab.com:29878/social-media -u contributor -p password1
-$ db.users.find() 
+$ db.users.find()
 
 # Current Goal:
 - Build a basic site, with users able to create posts and see all posts.
@@ -34,7 +34,10 @@ $ db.users.find()
 - Create Nav-bar to go to below pages
 Routes/Pages to create in React, with endpoints in Express API to fetch info:
 - Main Page('/'): All posts are shown. Text for now(like Twitter), later enable other content/pics/vids/etc.(like reddit).
+  - Main Page should have form to create a new post if logged in
+    (or perhaps let guests post with an anonymous tag)
 - User Page('/user'): Should show user's posts, with options to edit/delete.
+- Users('/users') index page: should link to show page of each user
 - Account Page('/settings'): Should show user info(email, name), and options to edit/delete account
 
 # Done So Far
