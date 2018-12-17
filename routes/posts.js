@@ -4,7 +4,8 @@ const User = require('../models/user');
 const passport = require('passport');
 const auth = require('./auth');
 
-postsRouter.get('/api/posts', (req, res) => {
+// url = '/api/posts/'
+postsRouter.get('/', (req, res) => {
   User.find({posts: {$exists: true, $ne: []}})
   .then(user => user.map(user => user.posts))
   .then(posts => res.json(posts.flat()))
