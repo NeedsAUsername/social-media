@@ -25,6 +25,8 @@ $ npm run dev
 
 to connect to mongo shell in terminal:
 $ mongo ds229878.mlab.com:29878/social-media -u contributor -p password1
+
+
 $ db.users.find()
 
 # Current Goal:
