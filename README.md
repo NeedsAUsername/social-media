@@ -44,3 +44,7 @@ Routes/Pages to create in React, with endpoints in Express API to fetch info:
   - login/signup/logout forms working
   - stores token in local storage and include in header
   - fetches user on app mount if local storage has token
+  
+# To Consider
+-production build should run one server
+https://stackoverflow.com/questions/51657572/not-sure-how-to-start-and-deploy-reactjs-app-on-production-server-with-expressjs

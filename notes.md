@@ -5,3 +5,6 @@ mlab notes:
 mongodb notes:
   -collections => SQL tables
   -docs => SQL entries
+
+share node_module:
+https://stackoverflow.com/questions/29786887/how-can-i-make-multiple-projects-share-node-modules-directory
