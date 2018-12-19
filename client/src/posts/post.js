@@ -5,7 +5,7 @@ class Post extends React.Component {
     let post = this.props.post
     return (
       <div>
-        <h2>{post.title} - by: {post.user}</h2> 
+        <h2>{post.title} - by: {post.user.name}</h2>
         <p>{post.content}</p>
       </div>
     )
