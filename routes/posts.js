@@ -12,4 +12,13 @@ postsRouter.get('/', (req, res) => {
   .catch(err => res.status(500).json({error: err}))
 })
 
+// create
+postsRouter.post('/', (req, res) => {
+  // req: {userId: 'userId', post: {postdata}}
+  User.findByIdAndUpdate(req.body.userId, {$push: {posts: req.body.post}})
+  .then(user => res.json(user.posts))
+  .catch(err => res.status(500).json({error: err}))
+})
+
+
 module.exports = postsRouter;
