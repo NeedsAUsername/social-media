@@ -1,14 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import './posts.css';
+import Post from './post.js'
 
-class Post extends React.Component {
+class Posts extends React.Component {
   renderPosts = () => {
     return this.props.posts.map((post, index) =>
-      <div key={index}>
-        <h2>{post.title}</h2>
-        <p>{post.content}</p>
-      </div>
+      <Post key={index} post={post}/>
     )
   }
   render () {
@@ -26,8 +24,11 @@ const mapStateToProps = (store) => {
   // our server has a posts index endpoint, but since we're loading users data on app load anyways, we can just filter that data using js to get all posts.
   return {
     // posts: [[{postdata}, {postdata}], [{postdata}], [{postdata}]]
-    posts: store.users.usersList.filter(user => user.posts).map(user => user.posts).flat()
+    posts: store.users.usersList.filter(user => user.posts).map(user => {
+      let userPosts = user.posts.map(post => {return {...{user: user.name}, ...post}})
+      return userPosts
+    }).flat()
   }
 }
 
-export default connect(mapStateToProps)(Post);
+export default connect(mapStateToProps)(Posts);
