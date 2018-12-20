@@ -19,13 +19,10 @@ postsRouter.get('/', (req, res) => {
   .catch(err => res.status(500).json({error: err}))
 })
 
-// posts: store.users.usersList.filter(user => user.posts).map(user => {
-//   let userPosts = user.posts.map(post => {return {...{user: user.name}, ...post}})
-//   return userPosts
 // create
 postsRouter.post('/', (req, res) => {
   // req: {userId: 'userId', post: {postdata}}
-  User.findByIdAndUpdate(req.body.userId, {$push: {posts: req.body.post}})
+  User.findByIdAndUpdate(req.body.userId, {$push: {posts: req.body.post}}, {new: true})
   .then(user => res.json(user.posts))
   .catch(err => res.status(500).json({error: err}))
 })

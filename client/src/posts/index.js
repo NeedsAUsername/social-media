@@ -1,7 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import './posts.css';
-import Post from './post.js'
+import Post from './post';
+import PostInput from './input';
+import {createPost} from '../actions/posts/createPost';
 
 class Posts extends React.Component {
   renderPosts = () => {
@@ -9,13 +11,13 @@ class Posts extends React.Component {
       <Post key={index} post={post}/>
     )
   }
+
   render () {
     return (
       <div>
         <h1>Posts Component</h1>
-        <ul>
-          {this.renderPosts()}
-        </ul>
+        <PostInput createPost={this.props.createPost} />
+        {this.renderPosts()}
       </div>
     )
   }
@@ -32,4 +34,4 @@ const mapStateToProps = (store) => {
   }
 }
 
-export default connect(mapStateToProps)(Posts);
+export default connect(mapStateToProps, {createPost})(Posts);

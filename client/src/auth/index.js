@@ -7,10 +7,6 @@ import {login} from '../actions/auth/login';
 import {logout} from '../actions/auth/logout';
 
 class Auth extends React.Component {
-  // Todo:
-  // On login, set token inside local storage
-  // If user is logged in, show button to logout
-  // Set up redux
   state = {
     formShown: false
   }
@@ -45,7 +41,6 @@ class Auth extends React.Component {
     <AuthInput title={this.state.formShown} formShown={this.state.formShown} formAction={this.formAction} hide={this.hide}/>
   )
   render () {
-    //ToDo: Make button logout
     return (
       <div>
         {this.props.loggedIn ? <button onClick={this.props.logout}>Logout</button> : this.renderButtons()}
