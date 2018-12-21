@@ -7,7 +7,11 @@ class PostInput extends React.Component {
   }
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.createPost(this.state)
+    this.props.createPost(this.state);
+    this.setState({
+      title: "",
+      content: ""
+    })
   }
   handleChange = (e) => {
     e.preventDefault();

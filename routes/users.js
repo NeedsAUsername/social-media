@@ -14,21 +14,9 @@ usersRouter.get('/', (req, res) => {
   .catch(err => res.status(500).json({error: err}))
 })
 
-// show. to be used for displaying other user's profile(name, email only)
-usersRouter.get('/:id', (req, res) => {
-  User.findById(req.params.id)
-  .then(doc => {
-    // change to name/email only later
-    res.json(doc);
-  })
-  .catch(err => res.status(500).json({error: err}))
-})
-
-
 // get current user
 // auth.required = needs JWT token in header (Authorization: Token enterTokenHere)
 usersRouter.get('/current', auth.required, (req, res) => {
-  // If authorized, req will have payload with user id.
   User.findById(req.payload.id)
   .then(doc => {
     if(!doc) {
@@ -37,6 +25,16 @@ usersRouter.get('/current', auth.required, (req, res) => {
       return res.json(doc.toAuthJSON())
     }
   })
+})
+
+// show. to be used for displaying other user's profile(name, email only)
+usersRouter.get('/:id', (req, res) => {
+  User.findById(req.params.id)
+  .then(doc => {
+    // change to name/email only later
+    res.json(doc);
+  })
+  .catch(err => res.status(500).json({error: err}))
 })
 
 // login
