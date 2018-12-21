@@ -38,7 +38,11 @@ const mapStateToProps = (store) => {
         return {...{user: {name: user.name, id: user._id}}, ...post}
       })
       return userPosts;
-    }).flat()
+    }).flat().sort((a, b) => {
+      let aDate = new Date(a.date);
+      let bDate = new Date(b.date);
+      return aDate > bDate ? -1 : aDate < bDate ? 1 : 0
+    })
   }
 }
 
