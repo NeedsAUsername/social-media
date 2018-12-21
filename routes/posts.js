@@ -22,9 +22,6 @@ postsRouter.get('/', (req, res) => {
 
 // create
 postsRouter.post('/', auth.required, (req, res) => {
-  if (!req.payload.id) {
-    res.json({error: 'Not Authorized'})
-  }
   // req: {userId: 'userId', post: {postdata}}
   let today = new Date();
   let date = `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
@@ -34,5 +31,16 @@ postsRouter.post('/', auth.required, (req, res) => {
   .catch(err => res.status(500).json({error: err}))
 })
 
+// create for guests(users not logged in), will be anonymous post)
+postsRouter.post('/guest', (req, res) => {
+  // req: {userId: 'userId', post: {postdata}}
+  let today = new Date();
+  let date = `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
+  let post = {...req.body.post, date: date}
+  // Account that holds all anonymous posts
+  User.findByIdAndUpdate('5c1c5c8ab659e24b82f4f7a8', {$push: {posts: post}}, {new: true})
+  .then(user => res.json(user))
+  .catch(err => res.status(500).json({error: err}))
+})
 
 module.exports = postsRouter;

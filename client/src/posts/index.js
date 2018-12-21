@@ -24,7 +24,7 @@ class Posts extends React.Component {
   createPost = (input) => {
     if (this.props.userId === "") {
       // for guest/anonymous posts
-      this.props.createPost("5c15d22bf3e9631f9cb2d1e1", input)
+      this.props.createPost("guest", input)
     } else {
       this.props.createPost(this.props.userId, input)
     }
