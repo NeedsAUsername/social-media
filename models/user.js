@@ -13,6 +13,10 @@ let PostSchema = new mongoose.Schema({
   content: {
     type: String,
     required: true
+  },
+  date: {
+    type: String,
+    required: true 
   }
 })
 let UserSchema = new mongoose.Schema({

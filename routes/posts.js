@@ -22,7 +22,10 @@ postsRouter.get('/', (req, res) => {
 // create
 postsRouter.post('/', (req, res) => {
   // req: {userId: 'userId', post: {postdata}}
-  User.findByIdAndUpdate(req.body.userId, {$push: {posts: req.body.post}}, {new: true})
+  let today = new Date();
+  let date = `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()} ${today.getHours()}:${today.getMinutes()}`;
+  let post = {...req.body.post, date: date}
+  User.findByIdAndUpdate(req.body.userId, {$push: {posts: post}}, {new: true})
   .then(user => res.json(user))
   .catch(err => res.status(500).json({error: err}))
 })
