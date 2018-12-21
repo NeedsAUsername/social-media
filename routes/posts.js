@@ -23,7 +23,7 @@ postsRouter.get('/', (req, res) => {
 postsRouter.post('/', (req, res) => {
   // req: {userId: 'userId', post: {postdata}}
   User.findByIdAndUpdate(req.body.userId, {$push: {posts: req.body.post}}, {new: true})
-  .then(user => res.json(user.posts))
+  .then(user => res.json(user))
   .catch(err => res.status(500).json({error: err}))
 })
 

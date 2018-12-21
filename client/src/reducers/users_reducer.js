@@ -1,7 +1,8 @@
 function usersReducer(state = {
   loading: false,
   signingUp: false,
-  usersList: []
+  creatingPost: false,
+  usersList: [],
 }, action) {
   console.log(action);
   if (action.error || (action.payload && action.payload.error)) {
@@ -26,6 +27,13 @@ function usersReducer(state = {
     case 'SIGN_UP':
       alert('Signed Up successfully. Login now')
       return {...state, signingUp: false, usersList: [...state.usersList, action.payload]}
+
+    case 'LOADING_CREATE_POST':
+      return {...state, creatingPost: true}
+
+    case 'CREATE_POST':
+      let usersList = state.usersList.filter(user => user._id !== action.payload.id);
+      return {...state, usersList: [ action.payload, ...usersList], creatingPost: false}
 
     default:
       return state;

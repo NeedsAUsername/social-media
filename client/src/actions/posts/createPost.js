@@ -1,7 +1,6 @@
 export function createPost(input) {
   return (dispatch) => {
     dispatch({type: 'LOADING_CREATE_POST'});
-    debugger
     fetch('/api/posts', {
       method: 'POST',
       headers: {
@@ -11,8 +10,12 @@ export function createPost(input) {
       body: JSON.stringify(input)
     })
     .then(response => response.json())
-    .then(post => {
-      console.log(post)
+    .then(posts => {
+      console.log(posts);
+      dispatch({
+        type: 'CREATE_POST',
+        payload: posts
+      })
     })
     .catch(error => {
       dispatch({
