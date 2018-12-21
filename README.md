@@ -37,9 +37,6 @@ $ db.users.find()
 # ToDos:
 - Create Nav-bar to go to below pages
 Routes/Pages to create in React, with endpoints in Express API to fetch info:
-- Main Page('/'): All posts are shown. Text for now(like Twitter), later enable other content/pics/vids/etc.(like reddit).
-  - Main Page should have form to create a new post if logged in
-    (or perhaps let guests post with an anonymous tag)
 - User Page('/user'): Should show user's posts, with options to edit/delete.
 - Users('/users') index page: should link to show page of each user
 - Account Page('/settings'): Should show user info(email, name), and options to edit/delete account
@@ -52,6 +49,10 @@ Routes/Pages to create in React, with endpoints in Express API to fetch info:
   - login/signup/logout forms working
   - stores token in local storage and include in header
   - fetches user on app mount if local storage has token
+- Main Page('/'): All posts are shown, ordered by newest date first.
+- Main Page has form to create a new post
+  - if user is not logged in, will post from Anonymous account 
+
 
 # To Consider
 -production build should run one server
