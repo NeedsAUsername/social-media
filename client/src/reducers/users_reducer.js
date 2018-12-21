@@ -32,7 +32,6 @@ function usersReducer(state = {
       return {...state, creatingPost: true}
 
     case 'CREATE_POST':
-      debugger
       let usersList = state.usersList.filter(user => user._id !== action.payload._id);
       return {...state, usersList: [...usersList, action.payload], creatingPost: false}
 

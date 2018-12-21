@@ -5,6 +5,7 @@ const passport = require('passport');
 const auth = require('./auth');
 
 // url = '/api/posts/'
+// index
 postsRouter.get('/', (req, res) => {
   User.find({posts: {$exists: true, $ne: []}})
   .then(users => users.map(user => {
@@ -20,7 +21,10 @@ postsRouter.get('/', (req, res) => {
 })
 
 // create
-postsRouter.post('/', (req, res) => {
+postsRouter.post('/', auth.required, (req, res) => {
+  if (!req.payload.id) {
+    res.json({error: 'Not Authorized'})
+  }
   // req: {userId: 'userId', post: {postdata}}
   let today = new Date();
   let date = `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;

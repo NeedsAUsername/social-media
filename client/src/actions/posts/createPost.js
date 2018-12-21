@@ -4,7 +4,8 @@ export function createPost(userId, input) {
     fetch('/api/posts', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': 'Token ' + localStorage.getItem('token')
       },
       accepts: 'application/json',
       body: JSON.stringify({userId: userId, post: input})

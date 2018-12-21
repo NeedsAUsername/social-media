@@ -16,7 +16,7 @@ usersRouter.get('/', (req, res) => {
 
 // get current user
 // auth.required = needs JWT token in header (Authorization: Token enterTokenHere)
-usersRouter.get('/current', auth.required, (req, res) => {
+usersRouter.get('/current', auth.required, (req, res) => { 
   User.findById(req.payload.id)
   .then(doc => {
     if(!doc) {
