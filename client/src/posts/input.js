@@ -24,9 +24,9 @@ class PostInput extends React.Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="title" >Title</label>
-          <input type="text" id="title" name="title" value={this.state.title} onChange={this.handleChange}/>
+          <input type="text" id="title" name="title" value={this.state.title} onChange={this.handleChange} required />
           <label htmlFor="content">Content</label>
-          <input type="textbox" id="content" name="content" value={this.state.content} onChange={this.handleChange}/>
+          <input type="textbox" id="content" name="content" value={this.state.content} onChange={this.handleChange} required />
           <input type="submit" />
         </form>
       </div>
