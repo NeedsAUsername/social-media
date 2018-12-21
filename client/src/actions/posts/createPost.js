@@ -1,4 +1,4 @@
-export function createPost(input) {
+export function createPost(userId, input) {
   return (dispatch) => {
     dispatch({type: 'LOADING_CREATE_POST'});
     fetch('/api/posts', {
@@ -7,7 +7,7 @@ export function createPost(input) {
         'Content-Type': 'application/json'
       },
       accepts: 'application/json',
-      body: JSON.stringify(input)
+      body: JSON.stringify({userId: userId, post: input})
     })
     .then(response => response.json())
     .then(posts => {
