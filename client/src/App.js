@@ -23,8 +23,6 @@ class App extends Component {
   }
   render() {
     return (
-      // todo: Setup routes for different pages(user profile, users search, posts, etc.)
-      // change root component to posts instead of users
       <Router>
         <div className="app">
           <Navbar routes={routes}/>

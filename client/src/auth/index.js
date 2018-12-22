@@ -40,17 +40,25 @@ class Auth extends React.Component {
   renderForm = () => (
     <AuthInput title={this.state.formShown} formShown={this.state.formShown} formAction={this.formAction} hide={this.hide}/>
   )
+  renderLogOut = () => (
+    <div>
+      <h2>{this.props.userName}({this.props.email})</h2>
+      <button onClick={this.props.logout}>Logout</button>
+    </div>
+  )
   render () {
     return (
       <div>
-        {this.props.loggedIn ? <button onClick={this.props.logout}>Logout</button> : this.renderButtons()}
+        {this.props.loggedIn ? this.renderLogOut() : this.renderButtons()}
       </div>
     )
   }
 }
 const mapStateToProps = (store) => {
   return {
-    loggedIn: store.currentUser.authenticated
+    loggedIn: store.currentUser.authenticated,
+    userName: store.currentUser.name,
+    email: store.currentUser.email
   }
 }
 
