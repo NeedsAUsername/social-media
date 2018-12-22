@@ -26,10 +26,17 @@ io.on('connection', (socket) => {
   socket.on('change color', (color) => {
   // once we get a 'change color' event from one of our clients, we will send it to the rest of the clients
   // we make use of the socket.emit method again with the argument given to use from the callback function above
-  console.log('Color Changed to: ', color)
-  io.sockets.emit('change color', color)
-})
-  socket.on('disconnect', () => console.log('a user disconnected'))
+    console.log('Color Changed to: ', color)
+    io.sockets.emit('change color', color)
+  })
+  socket.on('send message', (mes) => {
+    console.log('sending message: ' + mes)
+    io.sockets.emit('send message', mes)
+  })
+  socket.on('disconnect', () => {
+    socket.removeAllListeners('send message');
+    console.log('a user disconnected')
+  })
 })
 
 const PORT = process.env.PORT || 5000;

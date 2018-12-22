@@ -2,36 +2,49 @@ import React from 'react';
 import './chat.css';
 import socketIOClient from "socket.io-client";
 
+// outside of class to prevent multiple emits
+const socket = socketIOClient('http://localhost:5000');
+socket.on('change color', (color) => {
+  // setting the color of our button
+  document.body.style.backgroundColor = color
+})
+socket.on('send message', (text) => {
+  let mes = document.createElement('li');
+  mes.textContent = text;
+  document.querySelector('.messages').appendChild(mes);
+})
+
 class Chat extends React.Component {
   state = {
-    endpoint: 'http://localhost:5000',
-    color: ""
+    color: "",
+    message: ""
   }
-
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.sendMessage(this.state.message);
+  }
+  handleChange = (e) => {
+    e.preventDefault();
+    this.setState({
+      message: e.target.value
+    })
+  }
   // method for emitting a socket.io event
-  send = (color) => {
-    console.log('sending')
-    const socket = socketIOClient(this.state.endpoint)
-    // this emits an event to the socket (your server) with an argument of 'red'
-    // you can make the argument any color you would like, or any kind of data you want to send.
+  sendColor = (color) => {
     socket.emit('change color', color)
-    // socket.emit('change color', 'red', 'yellow') | you can have multiple arguments
+  }
+  sendMessage = (message) => {
+    socket.emit('send message', message)
   }
   render () {
-    const socket = socketIOClient(this.state.endpoint);
-    socket.on('change color', (color) => {
-      // setting the color of our button
-
-      document.body.style.backgroundColor = color
-    })
     return (
       <div>
-        <button onClick={() => this.send('blue')}>Blue</button>
-        <button onClick={() => this.send('red')}>Red</button>
-        <button onClick={() => this.send('yellow')}>Yellow</button>
+        <button onClick={() => this.sendColor('blue')}>Blue</button>
+        <button onClick={() => this.sendColor('red')}>Red</button>
+        <button onClick={() => this.sendColor('yellow')}>Yellow</button>
         <ul className="messages"></ul>
-        <form className="chat-form" action="">
-          <input className="m" autoComplete="off" /><button>Send</button>
+        <form className="chat-form" onSubmit={(e) => this.handleSubmit(e)}>
+          <input className="m" autoComplete="off" onChange={this.handleChange}/><button>Send</button>
         </form>
       </div>
     )
