@@ -6,12 +6,14 @@ import Users from './users';
 import Posts from './posts';
 import Auth from './auth';
 import Navbar from './components/navbar';
+import Chat from './chat';
 import {fetchUsers} from './actions/users/fetchUsers';
 import {fetchCurrentUser} from './actions/auth/fetchCurrentUser';
 
 const routes = [
   {path: '/', name: 'Home'},
-  {path: '/users', name: 'Users'}
+  {path: '/users', name: 'Users',
+  path:'/posts', name: 'Posts'}
 ]
 
 class App extends Component {
@@ -26,9 +28,10 @@ class App extends Component {
       <Router>
         <div className="app">
           <Navbar routes={routes}/>
-          <Route exact path='/' component={Posts} />
+          <Route exact path='/' component={Chat} />
           <Route exact path='/account' component={Auth} />
           <Route exact path='/users' component={Users} />
+          <Route exact path='/posts' component={Posts} />
         </div>
       </Router>
     );
