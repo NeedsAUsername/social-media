@@ -12,8 +12,8 @@ import {fetchCurrentUser} from './actions/auth/fetchCurrentUser';
 
 const routes = [
   {path: '/', name: 'Home'},
-  {path: '/users', name: 'Users',
-  path:'/posts', name: 'Posts'}
+  {path: '/users', name: 'Users'},
+  {path: '/posts', name: 'Posts'}
 ]
 
 class App extends Component {
