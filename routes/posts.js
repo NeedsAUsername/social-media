@@ -9,11 +9,11 @@ const auth = require('./auth');
 postsRouter.get('/', (req, res) => {
   User.find({posts: {$exists: true, $ne: []}})
   .then(users => users.map(user => {
-    // let userPosts = user.posts.map(post => {return {...{user: user.name}, ...post}})
     return user.posts.map(post => {
       // can't just do {...post} because it'll give me a bunch of other properties
       let {_id, title, content} = post;
-      return {...{user: {name: user.name, id: user._id}}, ...{_id, title, content}}
+      // we want to add user info along with post info
+      return {user: {name: user.name, id: user._id}, _id, title, content}
     });
   }))
   .then(posts => res.json(posts.flat()))
