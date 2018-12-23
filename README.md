@@ -33,8 +33,14 @@ $ db.users.find()
 
 # Current Goal:
 - Build a basic site, with users able to create posts and see all posts.
+- Use socket.io to enable real-time chat
 
 # ToDos:
+- Style the chat with user's name.
+- Enable use of emojis and pictures 
+- Add user is typing...
+- Add user has joined the room, and user has left the room
+
 - Create Nav-bar to go to below pages
 Routes/Pages to create in React, with endpoints in Express API to fetch info:
 - User Page('/user'): Should show user's posts, with options to edit/delete.
@@ -51,8 +57,9 @@ Routes/Pages to create in React, with endpoints in Express API to fetch info:
   - fetches user on app mount if local storage has token
 - Main Page('/'): All posts are shown, ordered by newest date first.
 - Main Page has form to create a new post
-  - if user is not logged in, will post from Anonymous account 
-
+  - if user is not logged in, will post from Anonymous account
+- Connected socket.io
+- Created basic real time chat
 
 # To Consider
 -production build should run one server

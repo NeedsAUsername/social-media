@@ -11,7 +11,7 @@ socket.on('change color', (color) => {
 })
 socket.on('send message', (text) => {
   let mes = document.createElement('li');
-  mes.innerHTML = text;
+  mes.textContent = text;
   document.querySelector('.messages').appendChild(mes);
 })
 
