@@ -2,7 +2,8 @@ import React from 'react';
 import './chat.css';
 import socketIOClient from "socket.io-client";
 
-// outside of class to prevent multiple emits
+// outside of class to prevent multiple event fires
+// (otherwise it would create a new event listener for every re-re-render)
 const socket = socketIOClient('http://localhost:5000');
 socket.on('change color', (color) => {
   // setting the color of our button
@@ -10,7 +11,7 @@ socket.on('change color', (color) => {
 })
 socket.on('send message', (text) => {
   let mes = document.createElement('li');
-  mes.textContent = text;
+  mes.innerHTML = text;
   document.querySelector('.messages').appendChild(mes);
 })
 
