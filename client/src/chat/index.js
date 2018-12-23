@@ -23,6 +23,9 @@ class Chat extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.sendMessage(this.state.message);
+    this.setState({
+      message: ""
+    })
   }
   handleChange = (e) => {
     e.preventDefault();
@@ -45,7 +48,8 @@ class Chat extends React.Component {
         <button onClick={() => this.sendColor('yellow')}>Yellow</button>
         <ul className="messages"></ul>
         <form className="chat-form" onSubmit={(e) => this.handleSubmit(e)}>
-          <input className="m" autoComplete="off" onChange={this.handleChange}/><button>Send</button>
+          <input onChange={this.handleChange} value={this.state.message}/>
+          <button>Send</button>
         </form>
       </div>
     )
