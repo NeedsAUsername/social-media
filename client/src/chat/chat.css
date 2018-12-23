@@ -1,7 +1,6 @@
 .chat-form {
   padding: 3px;
-  position: fixed;
-  bottom: 0;
+  margin-top: 10px;
   width: 100%;
 }
 .chat-from input {
@@ -17,6 +16,16 @@
   padding: 10px;
 }
 
+.messages-container {
+  max-width: 100vw;
+  min-height: 60vh;
+  max-height: 60vh;
+  display: fixed;
+  overflow: scroll;
+}
+.end {
+  height: 20vh;
+}
 .messages {
   list-style-type: none;
   margin: 0;

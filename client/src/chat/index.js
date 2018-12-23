@@ -39,6 +39,7 @@ class Chat extends React.Component {
   }
   sendMessage = (message) => {
     socket.emit('send message', message)
+    this.messagesEnd.scrollIntoView({block: 'end', behavior: 'smooth'})
   }
   render () {
     return (
@@ -46,7 +47,10 @@ class Chat extends React.Component {
         <button onClick={() => this.sendColor('blue')}>Blue</button>
         <button onClick={() => this.sendColor('red')}>Red</button>
         <button onClick={() => this.sendColor('yellow')}>Yellow</button>
-        <ul className="messages"></ul>
+        <div className="messages-container" ref={(el) => { this.messagesContainer = el; }}>
+          <ul className="messages"></ul>
+          <div className="end" ref={(el) => { this.messagesEnd = el; }}></div>
+        </div>
         <form className="chat-form" onSubmit={(e) => this.handleSubmit(e)}>
           <input onChange={this.handleChange} value={this.state.message}/>
           <button>Send</button>
