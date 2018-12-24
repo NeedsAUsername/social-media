@@ -23,15 +23,14 @@ server.use('/api', router);
 io.on('connection', (socket) => {
   console.log('a user connected');
   // just like on the client side, we have a socket.on method that takes a callback function
-  socket.on('change color', (color) => {
-  // once we get a 'change color' event from one of our clients, we will send it to the rest of the clients
-  // we make use of the socket.emit method again with the argument given to use from the callback function above
-    console.log('Color Changed to: ', color)
-    io.sockets.emit('change color', color)
-  })
+  // once we get a 'send message' event from one of our clients, we will send it to the rest of the clients using emit
   socket.on('send message', (mes) => {
     console.log('sending message: ' + mes)
     io.sockets.emit('send message', mes)
+  })
+  socket.on('join chat', (name) => {
+    console.log(name + 'has joined the chat')
+    io.sockets.emit('join chat', name)
   })
   socket.on('disconnect', () => {
     socket.removeAllListeners('send message');

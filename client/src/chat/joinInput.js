@@ -2,26 +2,26 @@ import React from 'react';
 
 class ChatInput extends React.Component {
   state = {
-    message: ""
+    name: ""
   }
   handleChange = (e) => {
     e.preventDefault();
     this.setState({
-      message: e.target.value
+      name: e.target.value
     })
   }
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.sendMessage(this.state.message);
+    this.props.joinChat(this.state.name);
     this.setState({
-      message: ""
+      name: ""
     })
   }
   render () {
     return (
-      <form className="chat-form" onSubmit={this.handleSubmit}>
-        <input onChange={this.handleChange} value={this.state.message}/>
-        <button>Send</button>
+      <form className="join-form" onSubmit={this.handleSubmit}>
+        <input onChange={this.handleChange} value={this.state.name} placeholder="Enter a username" required/>
+        <button>Join The Chat</button>
       </form>
     )
   }
