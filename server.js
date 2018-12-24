@@ -24,9 +24,9 @@ io.on('connection', (socket) => {
   console.log('a user connected');
   // just like on the client side, we have a socket.on method that takes a callback function
   // once we get a 'send message' event from one of our clients, we will send it to the rest of the clients using emit
-  socket.on('send message', (mes) => {
-    console.log('sending message: ' + mes)
-    io.sockets.emit('send message', mes)
+  socket.on('send message', (name, message) => {
+    console.log('sending message: ' + message)
+    io.sockets.emit('send message', name, message)
   })
   socket.on('join chat', (name) => {
     console.log(name + 'has joined the chat')

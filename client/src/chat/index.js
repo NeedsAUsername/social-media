@@ -7,15 +7,15 @@ import ChatJoinInput from './joinInput.js';
 // sock event listeners outside of class to prevent multiple event fires
 // (otherwise it would create a new event listener for every re-render)
 const socket = socketIOClient('http://localhost:5000');
-socket.on('send message', (text) => {
-  let mes = document.createElement('li');
-  mes.textContent = text;
-  document.querySelector('.messages').appendChild(mes);
+socket.on('send message', (user, text) => {
+  let message = document.createElement('li');
+  message.textContent = user + ': ' + text;
+  document.querySelector('.messages').appendChild(message);
 })
 socket.on('join chat', (name) => {
-  let mes = document.createElement('li');
-  mes.textContent = name + ' has entered the room';
-  document.querySelector('.messages').appendChild(mes);
+  let message = document.createElement('li');
+  message.textContent = name + ' has entered the room';
+  document.querySelector('.messages').appendChild(message);
 })
 
 class Chat extends React.Component {
@@ -24,7 +24,7 @@ class Chat extends React.Component {
     name: "Anonymous"
   }
   sendMessage = (message) => {
-    socket.emit('send message', message)
+    socket.emit('send message', this.state.name, message)
     this.messagesEnd.scrollIntoView({block: 'end', behavior: 'smooth'})
   }
   joinChat = (name) => {

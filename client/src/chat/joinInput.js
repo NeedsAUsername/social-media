@@ -21,7 +21,7 @@ class ChatInput extends React.Component {
     return (
       <form className="join-form" onSubmit={this.handleSubmit}>
         <input onChange={this.handleChange} value={this.state.name} placeholder="Enter a username" required/>
-        <button>Join The Chat</button>
+        <button>Join The Chat!</button>
       </form>
     )
   }
