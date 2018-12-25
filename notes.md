@@ -9,7 +9,9 @@ mongodb notes:
 share node_module:
 https://stackoverflow.com/questions/29786887/how-can-i-make-multiple-projects-share-node-modules-directory
 
-
+production notes:
+- 
+https://medium.com/@chloechong.us/how-to-deploy-a-create-react-app-with-an-express-backend-to-heroku-32decfee6d18
 
 NGROK NOTES:
 we can use ngrok to expose our local server. https://dashboard.ngrok.com/get-started we need to download it first and move it to our users folder. Then we can run it from terminal root.
