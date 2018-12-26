@@ -10,7 +10,11 @@ share node_module:
 https://stackoverflow.com/questions/29786887/how-can-i-make-multiple-projects-share-node-modules-directory
 
 production notes:
-- 
+- make express serve static react build
+<!-- server.use(express.static(path.join(__dirname, 'client/build'))) -->
+- configure heroku to build in scripts
+  - "heroku-postbuild": "cd client && npm install && npm run build"
+- change start script back to node from nodemon
 https://medium.com/@chloechong.us/how-to-deploy-a-create-react-app-with-an-express-backend-to-heroku-32decfee6d18
 
 NGROK NOTES:
