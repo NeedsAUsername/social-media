@@ -15,7 +15,15 @@ production notes:
 - configure heroku to build in scripts
   - "heroku-postbuild": "cd client && npm install && npm run build"
 - change start script back to node from nodemon
+- set heroku var for env variables (like MONGO_URI)
+- on React client side, make sure socket is listening to prod server
+  - let host;
+    if (process.env.NODE_ENV === "production") {
+      host = window.location.href
+    }
+    const socket = socketIOClient(host);
 https://medium.com/@chloechong.us/how-to-deploy-a-create-react-app-with-an-express-backend-to-heroku-32decfee6d18
+
 
 NGROK NOTES:
 we can use ngrok to expose our local server. https://dashboard.ngrok.com/get-started we need to download it first and move it to our users folder. Then we can run it from terminal root.

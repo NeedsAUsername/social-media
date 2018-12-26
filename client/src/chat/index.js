@@ -4,9 +4,16 @@ import socketIOClient from "socket.io-client";
 import ChatInput from './input.js';
 import ChatJoinInput from './joinInput.js';
 
+// if production, connect to prod server. otherwise connect to localhost server
+let host;
+if (process.env.NODE_ENV === "production") {
+  host = window.location.href
+} else {
+  host = "http://localhost:3000"
+}
 // sock event listeners outside of class to prevent multiple event fires
 // (otherwise it would create a new event listener for every re-render)
-const socket = socketIOClient('http://localhost:5000');
+const socket = socketIOClient(host);
 socket.on('send message', (user, text) => {
   let message = document.createElement('li');
   message.textContent = user + ': ' + text;
