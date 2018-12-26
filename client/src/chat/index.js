@@ -16,7 +16,7 @@ if (process.env.NODE_ENV === "production") {
 const socket = socketIOClient(host);
 socket.on('send message', (user, text) => {
   let message = document.createElement('li');
-  message.textContent = user + ': ' + text;
+  message.innerHTML = user + ': ' + text;
   document.querySelector('.messages').appendChild(message);
 })
 socket.on('join chat', (name) => {
