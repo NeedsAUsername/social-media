@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const server = express();
 const router = require('./routes');
-const path = require('path')
+const path = require('path');
 // To handle HTTP POST request in Express.js version 4 and above,
 // body-parser extracts the entire body portion of an incoming request stream and exposes it on req.body.
 const bodyParser = require('body-parser');
@@ -15,8 +15,10 @@ const io = require('socket.io')(socketServer);
 // https://medium.com/@chloechong.us/how-to-deploy-a-create-react-app-with-an-express-backend-to-heroku-32decfee6d18
 // We add a heroku-postbuild script to package.jsonso it knows to run the built in build method create-react-app gives us after Heroku is done doing its own build
 // Serve static files from the React frontend app
-server.use(express.static(path.join(__dirname, 'client/build')))
-// Anything that doesn't match the above, send back index.html
+if (process.env.NODE_ENV === 'production') {
+// Exprees will serve up production assets
+  app.use(express.static('client/build'));
+}
 
 require('./config/passport');
 
