@@ -8,16 +8,18 @@ class Navbar extends React.Component {
     borderColor: 'grey',
   })
   renderNavLinks = () => (
-    this.props.routes.map((route, index) => <NavLink key={index} className="navlink" to={route.path} exact activeStyle={this.current()}>{route.name}</NavLink>)
+    this.props.routes.map((route, index) => <li><NavLink key={index} className="navlink" to={route.path} exact activeStyle={this.current()}>{route.name}</NavLink></li>)
   )
   render () {
     // Replace navbar with site title later
     return (
-      <div className="navbar">
+      <nav className="navbar">
         <h1>Navbar</h1>
-        {this.renderNavLinks()}
+        <ul className="navlist">
+          {this.renderNavLinks()}
+        </ul>
         <Auth className="navlink"/>
-      </div>
+      </nav>
     )
   }
 }

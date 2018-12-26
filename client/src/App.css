@@ -10,7 +10,11 @@
   border-bottom: solid;
   align-items: center;
 }
-
+.navlist {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+}
 .navlink {
   margin: 10px;
   text-decoration: none;

@@ -31,9 +31,9 @@ class authInput extends React.Component {
   )
   render () {
     return (
-      <React.Fragment>
-        <h1>{this.props.title} <button type="button" onClick={this.props.hide}>Hide</button></h1>
-        <form onSubmit={this.handleSubmit}>
+      <div className="auth-container">
+        <h3>{this.props.title} <button type="button" onClick={this.props.hide}>Hide</button></h3>
+        <form className="auth-form" onSubmit={this.handleSubmit}>
 
           <label htmlFor="email">Email</label>
           <input id="email" type="email" name="email"
@@ -47,7 +47,7 @@ class authInput extends React.Component {
 
           <input type="submit" />
         </form>
-      </React.Fragment>
+      </div>
     )
   }
 }
