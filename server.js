@@ -17,7 +17,7 @@ const io = require('socket.io')(socketServer);
 // Serve static files from the React frontend app
 if (process.env.NODE_ENV === 'production') {
   // Exprees will serve up production assets
-  server.use(express.static(client/build'))
+  server.use(express.static('client/build'))
 }
 
 require('./config/passport');
