@@ -18,7 +18,7 @@ const io = require('socket.io')(socketServer);
 if (process.env.NODE_ENV === 'production') {
   // Exprees will serve up production assets
   server.use(express.static(client/build'))
-  app.get('*', (req, res) => res.sendFile(path.resolve('build', 'index.html'));
+  server.get('*', (req, res) => res.sendFile(path.resolve('build', 'index.html'));
 }
 
 require('./config/passport');
