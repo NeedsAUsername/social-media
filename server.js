@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === 'production') {
   server.use(express.static(path.join(__dirname, 'client/build')))
   // Anything that doesn't match the above, send back index.html
   // https://stackoverflow.com/questions/45565687/react-router-cannot-get-route-only-after-deployed-to-heroku
-  app.get('*', (req, res) => res.sendFile(path.resolve('build', 'index.html'));
+  server.get('*', (req, res) => res.sendFile(path.resolve('build', 'index.html'));
 }
 
 require('./config/passport');
