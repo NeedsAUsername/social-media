@@ -29,7 +29,7 @@ server.use(bodyParser.urlencoded({ extended: true }));
 
 server.use('/api', router);
 // send other requests index.html file, which handles the dynamic routing via React Router.
-app.get('*', (req, res) => {
+server.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/client/build/index.html'));
 });
 
