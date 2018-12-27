@@ -18,7 +18,6 @@ const io = require('socket.io')(socketServer);
 if (process.env.NODE_ENV === 'production') {
   // Exprees will serve up production assets
   server.use(express.static(client/build'))
-  server.get('*', (req, res) => res.sendFile(path.resolve('build', 'index.html'));
 }
 
 require('./config/passport');
@@ -29,6 +28,10 @@ server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 
 server.use('/api', router);
+// send other requests index.html file, which handles the dynamic routing via React Router.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/client/build/index.html'));
+});
 
 io.on('connection', (socket) => {
   console.log('a user connected');
