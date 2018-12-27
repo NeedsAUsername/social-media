@@ -16,10 +16,12 @@ const io = require('socket.io')(socketServer);
 // We add a heroku-postbuild script to package.jsonso it knows to run the built in build method create-react-app gives us after Heroku is done doing its own build
 // Serve static files from the React frontend app
 if (process.env.NODE_ENV === 'production') {
-// Exprees will serve up production assets
+  // Exprees will serve up production assets
   server.use(express.static(path.join(__dirname, 'client/build')))
+  // Anything that doesn't match the above, send back index.html
+  // https://stackoverflow.com/questions/45565687/react-router-cannot-get-route-only-after-deployed-to-heroku
+  app.get('*', (req, res) => res.sendFile(path.resolve('build', 'index.html'));
 }
-// Anything that doesn't match the above, send back index.html
 
 require('./config/passport');
 
