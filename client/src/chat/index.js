@@ -49,6 +49,7 @@ class Chat extends React.Component {
   render () {
     return (
       <div>
+        <p>You: {this.state.name}</p>
         <p>Online Users: <span className="users"></span></p>
         <div className="messages-container" ref={(el) => { this.messagesContainer = el; }}>
           <ul className="messages"></ul>
