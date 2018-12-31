@@ -24,6 +24,10 @@ production notes:
     const socket = socketIOClient(host);
 https://medium.com/@chloechong.us/how-to-deploy-a-create-react-app-with-an-express-backend-to-heroku-32decfee6d18
 
+Socket Notes:
+- to get list of clients:
+https://stackoverflow.com/questions/46532196/get-list-of-clients-in-a-socket-io-room-2-0
+   - if no namespace, or rooms, can just use io.clients
 
 NGROK NOTES:
 we can use ngrok to expose our local server. https://dashboard.ngrok.com/get-started we need to download it first and move it to our users folder. Then we can run it from terminal root.

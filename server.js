@@ -33,15 +33,14 @@ server.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/client/build/index.html'));
 });
 
+
+// socket events //
+let users = {};
 io.on('connection', (socket) => {
   console.log('a user connected');
-  // https://stackoverflow.com/questions/46532196/get-list-of-clients-in-a-socket-io-room-2-0
-  // if using namespace or rooms, use io.of('/namespace').in('room name').clients
-  io.clients((error, clients) => {
-    // Returns an array of client IDs like ["Anw2LatarvGVVXEIAAAD"]
-    console.log(clients);
-    io.sockets.emit('user count', clients.length)
-  });
+  users[socket.id] = "Anonymous";
+  console.log(users);
+  io.sockets.emit('users list', Object.values(users))
   // just like on the client side, we have a socket.on method that takes a callback function
   // once we get a 'send message' event from one of our clients, we will send it to the rest of the clients using emit
   socket.on('send message', (name, message) => {
@@ -50,16 +49,16 @@ io.on('connection', (socket) => {
   })
   socket.on('join chat', (name) => {
     console.log(name + 'has joined the chat')
+    users[socket.id] = name;
+    io.sockets.emit('users list', Object.values(users))
     io.sockets.emit('join chat', name)
   })
   socket.on('disconnect', () => {
     // no longer need removeAllListeners
     console.log('a user disconnected')
-    io.clients((error, clients) => {
-      // Returns an array of client IDs like ["Anw2LatarvGVVXEIAAAD"]
-      console.log(clients);
-      io.sockets.emit('user count', clients.length)
-    });
+    delete users[socket.id]
+    console.log(users) 
+    io.sockets.emit('users list', users)
   })
 
 })

@@ -14,14 +14,14 @@ if (process.env.NODE_ENV === "production") {
 // sock event listeners outside of class to prevent multiple event fires
 // (otherwise it would create a new event listener for every re-render)
 const socket = socketIOClient(host);
-socket.on('user count', (number) => {
-  let usersCount = document.querySelector('.user-count');
-  usersCount.textContent = number + ' users online';
+socket.on('users list', (usersList) => {
+  document.querySelector('.users').textContent = usersList;
 })
 socket.on('send message', (user, text) => {
   let message = document.createElement('li');
   message.innerHTML = user + ': ' + text;
   document.querySelector('.messages').appendChild(message);
+  console.log(socket.id)
 })
 socket.on('join chat', (name) => {
   let message = document.createElement('li');
@@ -32,10 +32,10 @@ socket.on('join chat', (name) => {
 class Chat extends React.Component {
   state = {
     joined: false,
-    name: "Anonymous"
+    name: "Anonymous",
   }
   sendMessage = (message) => {
-    socket.emit('send message', this.state.name, message)
+    socket.emit('send message', this.state.name.trim(), message)
     this.messagesEnd.scrollIntoView({block: 'end', behavior: 'smooth'})
   }
   joinChat = (name) => {
@@ -43,13 +43,13 @@ class Chat extends React.Component {
     this.messagesEnd.scrollIntoView({block: 'end', behavior: 'smooth'})
     this.setState({
       joined: true,
-      name: name
+      name: name,
     })
   }
   render () {
     return (
       <div>
-        <p className="user-count"></p>
+        <p>Online Users: <span className="users"></span></p>
         <div className="messages-container" ref={(el) => { this.messagesContainer = el; }}>
           <ul className="messages"></ul>
           <div className="end" ref={(el) => { this.messagesEnd = el; }}></div>
