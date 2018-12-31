@@ -57,8 +57,8 @@ io.on('connection', (socket) => {
     // no longer need removeAllListeners
     console.log('a user disconnected')
     delete users[socket.id]
-    console.log(users) 
-    io.sockets.emit('users list', users)
+    console.log(users)
+    io.sockets.emit('users list', Object.values(users))
   })
 
 })
