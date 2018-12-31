@@ -35,6 +35,13 @@ server.get('*', (req, res) => {
 
 io.on('connection', (socket) => {
   console.log('a user connected');
+  // https://stackoverflow.com/questions/46532196/get-list-of-clients-in-a-socket-io-room-2-0
+  // if using namespace or rooms, use io.of('/namespace').in('room name').clients
+  io.clients((error, clients) => {
+    // Returns an array of client IDs like ["Anw2LatarvGVVXEIAAAD"]
+    console.log(clients);
+    io.sockets.emit('user count', clients.length)
+  });
   // just like on the client side, we have a socket.on method that takes a callback function
   // once we get a 'send message' event from one of our clients, we will send it to the rest of the clients using emit
   socket.on('send message', (name, message) => {
@@ -46,9 +53,15 @@ io.on('connection', (socket) => {
     io.sockets.emit('join chat', name)
   })
   socket.on('disconnect', () => {
-    socket.removeAllListeners('send message');
+    // no longer need removeAllListeners
     console.log('a user disconnected')
+    io.clients((error, clients) => {
+      // Returns an array of client IDs like ["Anw2LatarvGVVXEIAAAD"]
+      console.log(clients);
+      io.sockets.emit('user count', clients.length)
+    });
   })
+
 })
 
 const PORT = process.env.PORT || 5000;

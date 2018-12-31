@@ -14,6 +14,10 @@ if (process.env.NODE_ENV === "production") {
 // sock event listeners outside of class to prevent multiple event fires
 // (otherwise it would create a new event listener for every re-render)
 const socket = socketIOClient(host);
+socket.on('user count', (number) => {
+  let usersCount = document.querySelector('.user-count');
+  usersCount.textContent = number + ' users online';
+})
 socket.on('send message', (user, text) => {
   let message = document.createElement('li');
   message.innerHTML = user + ': ' + text;
@@ -45,6 +49,7 @@ class Chat extends React.Component {
   render () {
     return (
       <div>
+        <p className="user-count"></p>
         <div className="messages-container" ref={(el) => { this.messagesContainer = el; }}>
           <ul className="messages"></ul>
           <div className="end" ref={(el) => { this.messagesEnd = el; }}></div>
