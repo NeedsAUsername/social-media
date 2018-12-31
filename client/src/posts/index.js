@@ -32,9 +32,10 @@ class Posts extends React.Component {
   render () {
     return (
       <div>
-        <h1>Posts Component</h1>
         <PostInput createPost={this.createPost} />
-        {this.renderPosts()}
+        <section className="post-container">
+          {this.renderPosts()}
+        </section>
       </div>
     )
   }

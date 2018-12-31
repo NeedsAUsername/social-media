@@ -14,21 +14,23 @@ if (process.env.NODE_ENV === "production") {
 // sock event listeners outside of class to prevent multiple event fires
 // (otherwise it would create a new event listener for every re-render)
 const socket = socketIOClient(host);
-socket.on('users list', (usersList) => {
-  document.querySelector('.users').textContent = usersList;
-})
-socket.on('send message', (user, text) => {
-  let message = document.createElement('li');
-  message.innerHTML = user + ': ' + text;
-  document.querySelector('.messages').appendChild(message);
-  console.log(socket.id)
-})
-socket.on('join chat', (name) => {
-  let message = document.createElement('li');
-  message.textContent = name + ' has entered the room';
-  document.querySelector('.messages').appendChild(message);
-})
-
+// dont want to activate events except on another page 
+if (window.location.href === "http://localhost:3000/") {
+  socket.on('users list', (usersList) => {
+    document.querySelector('.users').textContent = usersList;
+  })
+  socket.on('send message', (user, text) => {
+    let message = document.createElement('li');
+    message.innerHTML = user + ': ' + text;
+    document.querySelector('.messages').appendChild(message);
+    console.log(socket.id)
+  })
+  socket.on('join chat', (name) => {
+    let message = document.createElement('li');
+    message.textContent = name + ' has entered the room';
+    document.querySelector('.messages').appendChild(message);
+  })
+}
 class Chat extends React.Component {
   state = {
     joined: false,

@@ -1,0 +1,37 @@
+/* flexbox */
+.post-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.post {
+  display: flex;
+  flex-direction: row;
+  border-style: solid;
+  border-color: grey;
+  border-width: 1px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  width: 80%;
+  padding: 10px;
+}
+.post-left {
+  padding: 5px;
+  background-color: #f2f2f2;
+  border-right-style: solid;
+  border-right-color: grey;
+  border-right-width: 2px;
+  width: 300px;
+}
+.post-right {
+  margin-left: 30px;
+  text-align: left;
+  width: 500px;
+}
+.date {
+  color: grey;
+}
+.title {
+  padding-left: 10px;
+  box-shadow: 0px 5px 5px grey;
+}
