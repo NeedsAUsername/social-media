@@ -10,8 +10,8 @@ class Post extends React.Component {
           <h5 className="date">{post.date.split(' ')[0]}</h5>
         </div>
         <div className="post-right">
-          <h1 className="title">{post.title}</h1>
-          <p className="content">{post.content}</p>
+          <h1 className="post-title">{post.title}</h1>
+          <p className="post-content">{post.content}</p>
         </div>
       </div>
     )
