@@ -52,3 +52,19 @@
     font-size: 1.2em;
   }
 }
+
+.post-form-container {
+  display: flex;
+  justify-content: center;
+}
+.post-form {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  margin-bottom: 10px;
+}
+@media only screen and (min-width: 640px) {
+  .post-form {
+    width: 50%;
+  }
+}

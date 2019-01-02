@@ -21,13 +21,13 @@ class PostInput extends React.Component {
   }
   render () {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
+      <div className="post-form-container">
+        <form className="post-form" onSubmit={this.handleSubmit}>
           <label htmlFor="title" >Title</label>
-          <input type="text" id="title" name="title" value={this.state.title} onChange={this.handleChange} required />
+          <input className="input" type="text" id="title" name="title" value={this.state.title} onChange={this.handleChange} required />
           <label htmlFor="content">Content</label>
-          <input type="textbox" id="content" name="content" value={this.state.content} onChange={this.handleChange} required />
-          <input type="submit" />
+          <textarea className="input" id="content" name="content" onChange={this.handleChange} required>{this.state.content}</textarea>
+          <input className="button" type="submit" value="Post"/>
         </form>
       </div>
     )
