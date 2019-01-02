@@ -20,8 +20,8 @@ class ChatInput extends React.Component {
   render () {
     return (
       <form className="chat-form" onSubmit={this.handleSubmit}>
-        <input onChange={this.handleChange} value={this.state.message} placeholder="enter a message"/>
-        <button>Send</button>
+        <input className="input" onChange={this.handleChange} value={this.state.message} placeholder="enter a message"/>
+        <button className="button">Send</button>
       </form>
     )
   }

@@ -3,19 +3,6 @@
   margin-top: 10px;
   width: 100%;
 }
-.chat-from input {
-  border: 0;
-  padding: 10px;
-  width: 90%;
-  margin-right: .5%;
-}
-.chat-form button {
-  width: 9%;
-  background: rgb(130, 224, 255);
-  border: none;
-  padding: 10px;
-}
-
 .messages-container {
   max-width: 100vw;
   min-height: 60vh;

@@ -2,6 +2,18 @@
   text-align: center;
   color: #333333;
 }
+.button {
+  background: rgb(130, 224, 255);
+  min-width: 100px;
+  border: none;
+  padding: 10px;
+}
+.input {
+  border-style: solid;
+  border-width: 1px;
+  border-color: grey;
+  padding: 10px;
+}
 
 .navbar {
   display: flex;
