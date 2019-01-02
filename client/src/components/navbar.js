@@ -15,7 +15,7 @@ class Navbar extends React.Component {
     // Replace navbar with site title later
     return (
       <nav className="navbar">
-        <h1>ChatPost<i class="far fa-comments"></i></h1>
+        <h1>Chat'nPost<i class="far fa-comments"></i></h1>
         <ul className="navlist">
           {this.renderNavLinks()}
         </ul>
