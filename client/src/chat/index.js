@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === "production") {
 // (otherwise it would create a new event listener for every re-render)
 const socket = socketIOClient(host);
 // dont want to activate events except on another page
-if (window.location.href === "http://localhost:3000/") {
+if (window.location.href === host) {
   socket.on('users list', (usersList) => {
     let usersListElement = '';
     for (let i = 0; i < usersList.length; i++) {
