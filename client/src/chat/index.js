@@ -55,19 +55,20 @@ class Chat extends React.Component {
   render () {
     return (
       <main className="chat-container">
-        <h1>Chatroom</h1>
-        <section className="messages-container" ref={(el) => { this.messagesContainer = el; }}>
-          <div className="messages"></div>
-          <div className="end" ref={(el) => { this.messagesEnd = el; }}></div>
-        </section>
-        <section className="input-container">
-          {this.state.joined ? <ChatInput sendMessage={this.sendMessage}/> :
-            <ChatJoinInput joinChat={this.joinChat} />}
+        <section className="messages-section">
+          <h1>Chatroom</h1>
+          <div className="messages-container" ref={(el) => { this.messagesContainer = el; }}>
+            <div className="messages"></div>
+            <div className="end" ref={(el) => { this.messagesEnd = el; }}></div>
+          </div>
+          <div className="input-container">
+            {this.state.joined ? <ChatInput sendMessage={this.sendMessage}/> :
+              <ChatJoinInput joinChat={this.joinChat} />}
+          </div>
         </section>
         <section className="users-container">
-          <p>You: {this.state.name}</p>
-          <ul>Online Users</ul>
-          <ul className="users"></ul>
+          <h1>Online Users</h1>
+          <div className="users"></div>
         </section>
       </main>
     )
