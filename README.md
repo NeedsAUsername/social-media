@@ -1,8 +1,8 @@
-# Site Goals
-- social media site where users can post things to a global board, and also to private boards(friends only, groups, etc.)
-- real time chat with sockets.io
+# Site Summary
+- social media site where users can post content
+- real time chat with other online users 
 # Tech Used
-- React, Express, MongoDB
+- React, Express, MongoDB, socket.io
 # Setup
 $ npm install
 
@@ -32,15 +32,14 @@ $ mongo ds229878.mlab.com:29878/social-media -u contributor -p password1
 $ db.users.find()
 
 # Current Goal:
-- Build a basic site, with users able to create posts and see all posts.
 - Add more functionality to the real-time chat(images, emojis, etc.)
+- Add more functionality to the site (other REST actions for users and posts)
 
 # ToDos:
-- In general: CSS for layout, buttons, input, etc.
-- Style the chat with user's name.
-- Enable use of emojis and pictures
+- In general: more CSS
+  - Style the chat
+- Enable use of emojis and pictures(for both chat and posts)
 - Add user is typing...
-- Add user has joined the room, and user has left the room
 
 - Create Nav-bar to go to below pages
 Routes/Pages to create in React, with endpoints in Express API to fetch info:
@@ -60,5 +59,7 @@ Routes/Pages to create in React, with endpoints in Express API to fetch info:
 - Main Page has form to create a new post
   - if user is not logged in, will post from Anonymous account
 - Connected socket.io
-- Created basic real time chat
-- Created production build for Heroku
+- Real time chat
+- Dynamic list of online users
+- All-custom Layout and Styling of Home and Post pages
+- Production build for Heroku
