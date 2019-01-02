@@ -5,10 +5,11 @@ import Auth from '../auth';
 class Navbar extends React.Component {
   current = () => ({
     borderBottom: 'solid',
-    borderColor: 'grey',
+    borderColor: 'green',
+    color: 'green'
   })
   renderNavLinks = () => (
-    this.props.routes.map((route, index) => <li><NavLink key={index} className="navlink" to={route.path} exact activeStyle={this.current()}>{route.name} <i className={route.icon}></i></NavLink></li>)
+    this.props.routes.map((route, index) => <li><NavLink key={index} className="navlink" to={route.path} exact activeStyle={this.current()}><span className="route-name">{route.name}</span><i className={route.icon}></i></NavLink></li>)
   )
   render () {
     // Replace navbar with site title later

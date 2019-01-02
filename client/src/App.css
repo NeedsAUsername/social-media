@@ -29,17 +29,21 @@
   align-items: center;
 }
 .navlist {
+  padding: 0;
   list-style: none;
   display: flex;
   flex-direction: row;
 }
 .navlink {
-  margin: 10px;
+  margin: 15px;
   text-decoration: none;
+  font-size: 2em;
 }
 .navlink:hover {
-  border-top-style: solid;
-  border-top-color: grey;
+  color: green;
+}
+.route-name {
+  display: none;
 }
 .modal-bg {
   width: 100%;
@@ -77,6 +81,15 @@
     max-width: 800px;
     width: 30%;
     height: 50%;
+  }
+  .route-name {
+    display: inline;
+  }
+  .navlist {
+    margin-left: 10px;
+  }
+  .navlink {
+    font-size: 1.25em;
   }
 }
 
