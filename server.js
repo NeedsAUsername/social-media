@@ -60,7 +60,6 @@ io.on('connection', (socket) => {
     console.log(users)
     io.sockets.emit('users list', Object.values(users))
   })
-
 })
 
 const PORT = process.env.PORT || 5000;

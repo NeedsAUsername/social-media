@@ -13,6 +13,7 @@
   border-width: 1px;
   border-color: grey;
   padding: 10px;
+  width: 100%;
 }
 
 .navbar {
