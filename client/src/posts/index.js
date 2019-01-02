@@ -33,7 +33,7 @@ class Posts extends React.Component {
     return (
       <div>
         <PostInput createPost={this.createPost} />
-        <section className="post-container">
+        <section className="posts-container">
           {this.renderPosts()}
         </section>
       </div>

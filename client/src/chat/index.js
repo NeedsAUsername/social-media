@@ -14,10 +14,14 @@ if (process.env.NODE_ENV === "production") {
 // sock event listeners outside of class to prevent multiple event fires
 // (otherwise it would create a new event listener for every re-render)
 const socket = socketIOClient(host);
-// dont want to activate events except on another page 
+// dont want to activate events except on another page
 if (window.location.href === "http://localhost:3000/") {
   socket.on('users list', (usersList) => {
-    document.querySelector('.users').textContent = usersList;
+    let usersListElement = '';
+    for (let i = 0; i < usersList.length; i++) {
+      usersListElement += `<li>${usersList[i]}</li>`
+    }
+    document.querySelector('.users').innerHTML = usersListElement;
   })
   socket.on('send message', (user, text) => {
     let message = document.createElement('li');
@@ -50,16 +54,21 @@ class Chat extends React.Component {
   }
   render () {
     return (
-      <div>
-        <p>You: {this.state.name}</p>
-        <p>Online Users: <span className="users"></span></p>
-        <div className="messages-container" ref={(el) => { this.messagesContainer = el; }}>
+      <main className="chat-container">
+        <section className="users-container">
+          <p>You: {this.state.name}</p>
+          <h1>Online Users</h1>
+          <ul className="users"></ul>
+        </section>
+        <section className="messages-container" ref={(el) => { this.messagesContainer = el; }}>
           <ul className="messages"></ul>
           <div className="end" ref={(el) => { this.messagesEnd = el; }}></div>
-        </div>
-        {this.state.joined ? <ChatInput sendMessage={this.sendMessage}/> :
-          <ChatJoinInput joinChat={this.joinChat} />}
-      </div>
+        </section>
+        <section className="input-container">
+          {this.state.joined ? <ChatInput sendMessage={this.sendMessage}/> :
+            <ChatJoinInput joinChat={this.joinChat} />}
+        </section>
+      </main>
     )
   }
 }
