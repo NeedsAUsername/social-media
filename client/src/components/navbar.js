@@ -8,13 +8,13 @@ class Navbar extends React.Component {
     borderColor: 'grey',
   })
   renderNavLinks = () => (
-    this.props.routes.map((route, index) => <li><NavLink key={index} className="navlink" to={route.path} exact activeStyle={this.current()}>{route.name}</NavLink></li>)
+    this.props.routes.map((route, index) => <li><NavLink key={index} className="navlink" to={route.path} exact activeStyle={this.current()}>{route.name} <i className={route.icon}></i></NavLink></li>)
   )
   render () {
     // Replace navbar with site title later
     return (
       <nav className="navbar">
-        <h1>Navbar</h1>
+        <h1>ChatPost<i class="far fa-comments"></i></h1>
         <ul className="navlist">
           {this.renderNavLinks()}
         </ul>
