@@ -9,7 +9,7 @@ let host;
 if (process.env.NODE_ENV === "production") {
   host = window.location.href
 } else {
-  host = "http://localhost:3000"
+  host = "http://localhost:3000/"
 }
 // sock event listeners outside of class to prevent multiple event fires
 // (otherwise it would create a new event listener for every re-render)
