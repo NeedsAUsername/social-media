@@ -17,9 +17,9 @@ class Auth extends React.Component {
     }, () => console.log(this.state))
   }
   formAction = (formState) => {
-    if (this.state.formShown === "signup") {
+    if (this.state.formShown === "Signup") {
       this.props.signup(formState);
-    } else if (this.state.formShown === "login") {
+    } else if (this.state.formShown === "Login") {
       this.props.login(formState);
     } else {
       alert("error - check state formShown value");
@@ -32,8 +32,8 @@ class Auth extends React.Component {
   }
   renderButtons = () => (
     <React.Fragment>
-      <button onClick={(e) => this.handleClick(e, "login")}>Login</button>
-      <button onClick={(e) => this.handleClick(e, "signup")}>Signup</button>
+      <button onClick={(e) => this.handleClick(e, "Login")}>Login</button>
+      <button onClick={(e) => this.handleClick(e, "Signup")}>Signup</button>
       {this.state.formShown ? this.renderForm() : null}
     </React.Fragment>
   )
