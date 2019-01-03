@@ -26,6 +26,7 @@ if (window.location.href === host) {
   })
   socket.on('send message', (user, text) => {
     let message = document.createElement('li');
+    message.className="message";
     message.innerHTML = `
     <div class="user">
       <img class="usericon"
