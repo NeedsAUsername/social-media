@@ -56,13 +56,14 @@
   display: flex;
   flex-direction: row;
   max-width: 80%;
+  min-height: 55px;
 }
 .arrow-left {
   width: 0; 
   height: 0; 
   border-bottom: 10px solid transparent; 
   border-right: 10px solid;
-  margin-top: 35px;
+  margin-top: 30px;
   padding-left: 5px;
 }
 .content {
@@ -76,7 +77,6 @@
   border-radius: 10px;
   min-width: 100px;
   max-width: 70vw;
-  height: 50%;
   word-wrap: break-word;
 }
 
