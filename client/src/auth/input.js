@@ -42,7 +42,7 @@ class authInput extends React.Component {
             <input className="input" id="email" type="email" name="email"
               value={this.state.email} onChange={this.handleChange} required/>
 
-            {this.props.formShown === "login" ? null : this.renderName()}
+            {this.props.formShown === "Login" ? null : this.renderName()}
 
             <label htmlFor="password">Password</label>
             <input className="input" id="password" type="password" name="password"
