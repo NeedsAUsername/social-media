@@ -20,7 +20,7 @@ class ChatInput extends React.Component {
   render () {
     return (
       <form className="join-form" onSubmit={this.handleSubmit}>
-        <input className="input" onChange={this.handleChange} value={this.state.name} placeholder="Enter a username" required/>
+        <input className="input" onChange={this.handleChange} value={this.state.name} maxlength="7" placeholder="Enter a username (Max 7 characters)" required/>
         <button className="button">Join The Chat!</button>
       </form>
     )

@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === "production") {
 // sock event listeners outside of class to prevent multiple event fires
 // (otherwise it would create a new event listener for every re-render)
 const socket = socketIOClient(host);
-// dont want to activate events except on another page
+// dont want to activate events if on another page
 if (window.location.href === host) {
   socket.on('users list', (usersList) => {
     let usersListElement = '';
@@ -28,17 +28,16 @@ if (window.location.href === host) {
     let message = document.createElement('li');
     message.className="message";
     message.innerHTML = `
-    <div class="user">
-      <img class="usericon"
-     src=${userIcon}
-     alt="User Icon">
-      <div>${user}</div>
-    </div>   
+      <div class="user">
+        <img class="usericon"
+       src=${userIcon}
+       alt="User Icon">
+        <div class="username">${user}</div>
+      </div>
       <div class="chatbubble">
         <div class="arrow-left"></div>
         <div class="content">${text}</div>
-      </div>
-      `;
+      </div>`;
     document.querySelector('.messages').appendChild(message);
     console.log(socket.id)
   })
