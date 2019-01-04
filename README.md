@@ -1,6 +1,6 @@
 # Site Summary
 - social media site where users can post content
-- real time chat with other online users 
+- real time chat with other online users
 # Tech Used
 - React, Express, MongoDB, socket.io
 # Setup
@@ -37,7 +37,6 @@ $ db.users.find()
 
 # ToDos:
 - In general: more CSS
-  - Style the chat
 - Enable use of emojis and pictures(for both chat and posts)
 - Add user is typing...
 
@@ -59,7 +58,9 @@ Routes/Pages to create in React, with endpoints in Express API to fetch info:
 - Main Page has form to create a new post
   - if user is not logged in, will post from Anonymous account
 - Connected socket.io
-- Real time chat
-- Dynamic list of online users
+  - Integrated sockets into React Component
+  - Real time chat
+  - Chat room updates even while user is on a different route (only refresh clears chat)
+  - Dynamic list of online users
 - All-custom Layout and Styling of Home and Post pages
 - Production build for Heroku
