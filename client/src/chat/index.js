@@ -42,6 +42,7 @@ if (window.location.href === host) {
           <div class="content">${text}</div>
         </div>`;
       document.querySelector('.messages').appendChild(message);
+      document.querySelector('.end').scrollIntoView({block: 'end', behavior: 'smooth'})
     }
   })
   socket.on('join chat', (name) => {
@@ -50,6 +51,7 @@ if (window.location.href === host) {
       message.className="announcement";
       message.textContent = name + ' has entered the room';
       document.querySelector('.messages').appendChild(message);
+      document.querySelector('.end').scrollIntoView({block: 'end', behavior: 'smooth'})
     }
   })
 }
@@ -60,30 +62,33 @@ class Chat extends React.Component {
   }
   sendMessage = (message) => {
     socket.emit('send message', this.state.name.trim(), message)
-    this.messagesEnd.scrollIntoView({block: 'end', behavior: 'smooth'})
   }
   joinChat = (name) => {
     socket.emit('join chat', name)
-    this.messagesEnd.scrollIntoView({block: 'end', behavior: 'smooth'})
     this.setState({
       joined: true,
       name: name,
     })
   }
+  renderMessages = () => (
+    <React.Fragment>
+      <div className="messages-container" ref={(el) => { this.messagesContainer = el; }}>
+        <div className="messages"></div>
+        <div className="end"></div>
+      </div>
+      <div className="input-container">
+        {this.state.joined ? <ChatInput sendMessage={this.sendMessage}/> :
+          null}
+      </div>
+    </React.Fragment>
+  )
+
   render () {
     return (
       <main className="chat-container">
         <section className="messages-section">
           <h1>Chatroom</h1>
-          <div className="messages-container" ref={(el) => { this.messagesContainer = el; }}>
-            {this.state.joined ? null : <ChatJoinInput joinChat={this.joinChat}/>}
-            <div className="messages"></div>
-            <div className="end" ref={(el) => { this.messagesEnd = el; }}></div>
-          </div>
-          <div className="input-container">
-            {this.state.joined ? <ChatInput sendMessage={this.sendMessage}/> :
-              null}
-          </div>
+          {this.state.joined ? this.renderMessages() : <ChatJoinInput joinChat={this.joinChat}/>}
         </section>
         <section className="users-container">
           <h1>Online Users</h1>
