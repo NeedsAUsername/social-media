@@ -38,7 +38,7 @@ server.get('*', (req, res) => {
 let users = {};
 io.on('connection', (socket) => {
   console.log('a user connected');
-  users[socket.id] = "Anonymous";
+  users[socket.id] = "";
   console.log(users);
   io.sockets.emit('users list', Object.values(users))
   // just like on the client side, we have a socket.on method that takes a callback function
