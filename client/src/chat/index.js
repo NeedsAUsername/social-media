@@ -5,60 +5,57 @@ import ChatInput from './input.js';
 import ChatJoinInput from './joinInput.js';
 import userIcon from '../images/user.png';
 
-// if production, connect to prod server. otherwise connect to localhost server
 let host;
 if (process.env.NODE_ENV === "production") {
   host = window.location.href
 } else {
   host = "http://localhost:3000/"
 }
-// sock event listeners outside of class to prevent multiple event fires
-// (otherwise it would create a new event listener for every re-render)
 const socket = socketIOClient(host);
-// dont want to activate events if on another page
-if (window.location.href === host) {
-  socket.on('users list', (usersList) => {
-    if (document.querySelector('.users')) {
-      let usersListElement = '';
-      for (let i = 0; i < usersList.length; i++) {
-        usersListElement += `<li>${usersList[i]}</li>`
-      }
-      document.querySelector('.users').innerHTML = usersListElement;
-    }
-  })
-  socket.on('send message', (user, text) => {
-    if (document.querySelector('.messages')) {
-      let message = document.createElement('li');
-      message.className="message";
-      message.innerHTML = `
-        <div class="user">
-          <img class="usericon"
-         src=${userIcon}
-         alt="User Icon">
-          <div class="username">${user}</div>
-        </div>
-        <div class="chatbubble">
-          <div class="arrow-left"></div>
-          <div class="content">${text}</div>
-        </div>`;
-      document.querySelector('.messages').appendChild(message);
-      document.querySelector('.end').scrollIntoView({block: 'end', behavior: 'smooth'})
-    }
-  })
-  socket.on('join chat', (name) => {
-    if (document.querySelector('.messages')) {
-      let message = document.createElement('li');
-      message.className="announcement";
-      message.textContent = name + ' has entered the room';
-      document.querySelector('.messages').appendChild(message);
-      document.querySelector('.end').scrollIntoView({block: 'end', behavior: 'smooth'})
-    }
-  })
-}
+
 class Chat extends React.Component {
   state = {
     joined: false,
     name: "Anonymous",
+  }
+  componentDidMount() {
+    socket.on('users list', (usersList) => {
+      if (document.querySelector('.users')) {
+        let usersListElement = '';
+        for (let i = 0; i < usersList.length; i++) {
+          usersListElement += `<li>${usersList[i]}</li>`
+        }
+        document.querySelector('.users').innerHTML = usersListElement;
+      }
+    })
+    socket.on('send message', (user, text) => {
+      if (document.querySelector('.messages')) {
+        let message = document.createElement('li');
+        message.className="message";
+        message.innerHTML = `
+          <div class="user">
+            <img class="usericon"
+           src=${userIcon}
+           alt="User Icon">
+            <div class="username">${user}</div>
+          </div>
+          <div class="chatbubble">
+            <div class="arrow-left"></div>
+            <div class="content">${text}</div>
+          </div>`;
+        document.querySelector('.messages').appendChild(message);
+        document.querySelector('.end').scrollIntoView({block: 'end', behavior: 'smooth'})
+      }
+    })
+    socket.on('join chat', (name) => {
+      if (document.querySelector('.messages')) {
+        let message = document.createElement('li');
+        message.className="announcement";
+        message.textContent = name + ' has entered the room';
+        document.querySelector('.messages').appendChild(message);
+        document.querySelector('.end').scrollIntoView({block: 'end', behavior: 'smooth'})
+      }
+    })
   }
   sendMessage = (message) => {
     socket.emit('send message', this.state.name.trim(), message)
@@ -91,7 +88,7 @@ class Chat extends React.Component {
           {this.state.joined ? this.renderMessages() : <ChatJoinInput joinChat={this.joinChat}/>}
         </section>
         <section className="users-container">
-          <h1>Online Users</h1>
+          <h1>Users In Chat</h1>
           <div className="users"></div>
         </section>
       </main>
