@@ -19,17 +19,13 @@ class Chat extends React.Component {
     joined: false,
     name: "Anonymous",
     messageHistory: [],
-    users: []
+    usersList: []
   }
   componentDidMount() {
     socket.on('users list', (usersList) => {
-      if (document.querySelector('.users')) {
-        let usersListElement = '';
-        for (let i = 0; i < usersList.length; i++) {
-          usersListElement += `<li>${usersList[i]}</li>`
-        }
-        document.querySelector('.users').innerHTML = usersListElement;
-      }
+      this.setState({
+        usersList: usersList
+      })
     })
     socket.on('send message', (user, text) => {
       this.setState({
@@ -59,6 +55,9 @@ class Chat extends React.Component {
   renderMessages = () => {
     return this.state.messageHistory.map(message => <Message messageInfo={message} />)
   }
+  renderUsersList = () => {
+    return this.state.usersList.map(user => <li>{user}</li>)
+  }
   render () {
     return (
       <main className="chat-container">
@@ -77,7 +76,7 @@ class Chat extends React.Component {
         </section>
         <section className="users-container">
           <h1>Users In Chat</h1>
-          <div className="users"></div>
+          <div className="users">{this.renderUsersList()}</div>
         </section>
       </main>
     )
