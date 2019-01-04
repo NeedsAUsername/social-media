@@ -65,9 +65,8 @@ class Chat extends React.Component {
     return this.state.usersList.map(user => <li>{user}</li>)
   }
   render () {
-
     return (
-      <main className="chat-container" style={{display:"flex"}}>
+      <main className="chat-container" style={{display:window.location.href===host?"flex":"none"}}>
         <section className="messages-section">
           <h1>Chatroom</h1>
           <div className="messages-container">
