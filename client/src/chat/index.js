@@ -44,6 +44,7 @@ if (window.location.href === host) {
   })
   socket.on('join chat', (name) => {
     let message = document.createElement('li');
+    message.className="announcement";
     message.textContent = name + ' has entered the room';
     document.querySelector('.messages').appendChild(message);
   })

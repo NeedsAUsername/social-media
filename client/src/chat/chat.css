@@ -57,6 +57,8 @@
   flex-direction: row;
   max-width: 80%;
   min-height: 55px;
+  /* Requires a % height to properly function. Unclear explanation.*/
+  height: 50%; 
 }
 .arrow-left {
   width: 0; 
