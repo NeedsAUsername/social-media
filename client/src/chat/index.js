@@ -31,6 +31,7 @@ class Chat extends React.Component {
       this.setState({
         messageHistory: [...this.state.messageHistory, {user: user, text: text, userIcon: userIcon}]
       })
+      this.scrolltoEnd();
     })
     socket.on('join chat', (name) => {
       if (document.querySelector('.messages')) {
@@ -39,11 +40,17 @@ class Chat extends React.Component {
         message.textContent = name + ' has entered the room';
         document.querySelector('.messages').appendChild(message);
         document.querySelector('.end').scrollIntoView({block: 'end', behavior: 'smooth'})
+        this.scrolltoEnd();
       }
     })
   }
   sendMessage = (message) => {
     socket.emit('send message', this.state.name.trim(), message)
+  }
+  scrolltoEnd = () => {
+    if (this.messagesEnd) {
+      this.messagesEnd.scrollIntoView({block: 'end', behavior: 'smooth'})
+    }
   }
   joinChat = (name) => {
     socket.emit('join chat', name)
@@ -63,11 +70,11 @@ class Chat extends React.Component {
       <main className="chat-container">
         <section className="messages-section">
           <h1>Chatroom</h1>
-            <div className="messages-container" ref={(el) => { this.messagesContainer = el; }}>
+            <div className="messages-container">
               <div className="messages">
                 {this.state.joined ? this.renderMessages() : <ChatJoinInput joinChat={this.joinChat}/>}
               </div>
-              <div className="end"></div>
+              <div className="end" ref={el => {this.messagesEnd = el}}></div>
             </div>
             <div className="input-container">
               {this.state.joined ? <ChatInput sendMessage={this.sendMessage}/> :
