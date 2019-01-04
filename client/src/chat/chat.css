@@ -10,6 +10,8 @@
   display: flex;
   flex-direction: row;
 }
+.join-form {
+}
 .messages-section {
   width: 100%;
 }

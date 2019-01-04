@@ -18,34 +18,39 @@ const socket = socketIOClient(host);
 // dont want to activate events if on another page
 if (window.location.href === host) {
   socket.on('users list', (usersList) => {
-    let usersListElement = '';
-    for (let i = 0; i < usersList.length; i++) {
-      usersListElement += `<li>${usersList[i]}</li>`
+    if (document.querySelector('.users')) {
+      let usersListElement = '';
+      for (let i = 0; i < usersList.length; i++) {
+        usersListElement += `<li>${usersList[i]}</li>`
+      }
+      document.querySelector('.users').innerHTML = usersListElement;
     }
-    document.querySelector('.users').innerHTML = usersListElement;
   })
   socket.on('send message', (user, text) => {
-    let message = document.createElement('li');
-    message.className="message";
-    message.innerHTML = `
-      <div class="user">
-        <img class="usericon"
-       src=${userIcon}
-       alt="User Icon">
-        <div class="username">${user}</div>
-      </div>
-      <div class="chatbubble">
-        <div class="arrow-left"></div>
-        <div class="content">${text}</div>
-      </div>`;
-    document.querySelector('.messages').appendChild(message);
-    console.log(socket.id)
+    if (document.querySelector('.messages')) {
+      let message = document.createElement('li');
+      message.className="message";
+      message.innerHTML = `
+        <div class="user">
+          <img class="usericon"
+         src=${userIcon}
+         alt="User Icon">
+          <div class="username">${user}</div>
+        </div>
+        <div class="chatbubble">
+          <div class="arrow-left"></div>
+          <div class="content">${text}</div>
+        </div>`;
+      document.querySelector('.messages').appendChild(message);
+    }
   })
   socket.on('join chat', (name) => {
-    let message = document.createElement('li');
-    message.className="announcement";
-    message.textContent = name + ' has entered the room';
-    document.querySelector('.messages').appendChild(message);
+    if (document.querySelector('.messages')) {
+      let message = document.createElement('li');
+      message.className="announcement";
+      message.textContent = name + ' has entered the room';
+      document.querySelector('.messages').appendChild(message);
+    }
   })
 }
 class Chat extends React.Component {
@@ -71,12 +76,13 @@ class Chat extends React.Component {
         <section className="messages-section">
           <h1>Chatroom</h1>
           <div className="messages-container" ref={(el) => { this.messagesContainer = el; }}>
+            {this.state.joined ? null : <ChatJoinInput joinChat={this.joinChat}/>}
             <div className="messages"></div>
             <div className="end" ref={(el) => { this.messagesEnd = el; }}></div>
           </div>
           <div className="input-container">
             {this.state.joined ? <ChatInput sendMessage={this.sendMessage}/> :
-              <ChatJoinInput joinChat={this.joinChat} />}
+              null}
           </div>
         </section>
         <section className="users-container">
