@@ -8,7 +8,7 @@ import Message from './message.js';
 
 let host;
 if (process.env.NODE_ENV === "production") {
-  host = window.location.href
+  host = "https://social-media-sockets.herokuapp.com/"
 } else {
   host = "http://localhost:3000/"
 }
@@ -65,8 +65,9 @@ class Chat extends React.Component {
     return this.state.usersList.map(user => <li>{user}</li>)
   }
   render () {
+
     return (
-      <main className="chat-container">
+      <main className="chat-container" style={{display:"flex"}}>
         <section className="messages-section">
           <h1>Chatroom</h1>
           <div className="messages-container">
