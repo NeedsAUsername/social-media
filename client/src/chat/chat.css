@@ -20,7 +20,7 @@
   min-height: 60vh;
   max-height: 60vh;
   display: fixed;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 .end {
   height: 20vh;
@@ -29,12 +29,57 @@
   list-style-type: none;
   width: 100%;
 }
-.messages li, .users li {
-  display: block;
-  padding: 5px 10px;
+.messages {
+  font: 1em arial, sans-serif;
 }
-.messages li:nth-child(odd) {
-  background: #eee;
+.announcement {
+  text-align: center;
+  font-size: 1.25em;
+  font-weight: bold;
+  padding: 5px;
+}
+.message {
+  display: flex;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+.user {
+  width: 50px;
+  height: 50px;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+.usericon { 
+  width: 100%;
+}
+.chatbubble{
+  display: flex;
+  flex-direction: row;
+  max-width: 80%;
+  min-height: 55px;
+  /* Requires a % height to properly function. Unclear explanation.*/
+  height: 50%; 
+}
+.arrow-left {
+  width: 0; 
+  height: 0; 
+  border-bottom: 10px solid transparent; 
+  border-right: 10px solid;
+  margin-top: 30px;
+  padding-left: 5px;
+}
+.content {
+  border: solid black;
+  color: white;
+  font-weight: bold;
+  font-size: 1.25em;
+  background: #1E90FF;
+  text-align: left;
+  padding: 10px;
+  border-radius: 10px;
+  min-width: 100px;
+  max-width: 70vw;
+  word-wrap: break-word;
 }
 
 @media only screen and (min-width: 640px) {

@@ -3,6 +3,7 @@ import './chat.css';
 import socketIOClient from "socket.io-client";
 import ChatInput from './input.js';
 import ChatJoinInput from './joinInput.js';
+import userIcon from '../images/user.png';
 
 // if production, connect to prod server. otherwise connect to localhost server
 let host;
@@ -25,12 +26,25 @@ if (window.location.href === host) {
   })
   socket.on('send message', (user, text) => {
     let message = document.createElement('li');
-    message.innerHTML = user + ': ' + text;
+    message.className="message";
+    message.innerHTML = `
+    <div class="user">
+      <img class="usericon"
+     src=${userIcon}
+     alt="User Icon">
+      <div>${user}</div>
+    </div>   
+      <div class="chatbubble">
+        <div class="arrow-left"></div>
+        <div class="content">${text}</div>
+      </div>
+      `;
     document.querySelector('.messages').appendChild(message);
     console.log(socket.id)
   })
   socket.on('join chat', (name) => {
     let message = document.createElement('li');
+    message.className="announcement";
     message.textContent = name + ' has entered the room';
     document.querySelector('.messages').appendChild(message);
   })
