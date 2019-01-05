@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 class Message extends React.Component {
+
   render () {
     let message = this.props.messageInfo;
     return (
@@ -14,7 +15,7 @@ class Message extends React.Component {
         </div>
         <div className="chatbubble">
           <div className="arrow-left"></div>
-          <div className="content">{message.text}</div>
+          <div className="content" dangerouslySetInnerHTML={{ __html: message.text }}></div>
         </div>
       </div>
     )

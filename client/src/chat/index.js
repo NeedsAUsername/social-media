@@ -27,6 +27,9 @@ class Chat extends React.Component {
         usersList: usersList
       })
     })
+
+    // store message text as html, then in message component set innerhtml to the text
+
     socket.on('send message', (user, text) => {
       this.setState({
         messageHistory: [...this.state.messageHistory, {user, text, userIcon}]
