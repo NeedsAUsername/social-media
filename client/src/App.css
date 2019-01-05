@@ -7,8 +7,10 @@
   min-width: 100px;
   border: none;
   padding: 10px;
+  font-size: 14px;
 }
-.button:hover {
+.button:hover, .button:focus {
+  outline: 0;
   background: #8080ff;
   color: white;
 }
@@ -21,7 +23,9 @@
   box-sizing: border-box;
   font-size: 16px;
 }
-
+.input:focus {
+  outline: 0;
+}
 .navbar {
   display: flex;
   flex-direction: row;

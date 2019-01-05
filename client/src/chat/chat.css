@@ -6,6 +6,7 @@
 .input-container {
   width: 100%;
   border: solid #DCDCDC;
+  border-top: none;
   border-width: 7px;
   border-radius: 0 0 10px 10px;
 }
@@ -22,7 +23,6 @@
   width: 100%;
   border: solid #DCDCDC;
   border-width: 7px;
-  border-bottom: none;
   border-radius: 10px 10px 0 0;
   background-color: #F7F7F7;
   min-height: 60vh;
