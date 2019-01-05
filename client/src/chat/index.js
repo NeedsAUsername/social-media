@@ -78,9 +78,10 @@ class Chat extends React.Component {
             </div>
             <div className="end" ref={el => {this.messagesEnd = el}}></div>
           </div>
-          <div className="input-container">
-            {this.state.joined ? <ChatInput sendMessage={this.sendMessage}/> : null}
-          </div>
+            {this.state.joined ?
+              <div className="input-container">
+                <ChatInput sendMessage={this.sendMessage}/>
+              </div> : null}
         </section>
         <section className="users-container">
           <h1>Users In Chat</h1>
