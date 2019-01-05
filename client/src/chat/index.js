@@ -30,18 +30,18 @@ class Chat extends React.Component {
 
     // store message text as html, then in message component set innerhtml to the text
 
-    socket.on('send message', (user, text) => {
+    socket.on('send message', (user, message) => {
       this.setState({
-        messageHistory: [...this.state.messageHistory, {user, text, userIcon}]
+        messageHistory: [...this.state.messageHistory, {user, userIcon, content: message}]
       })
       this.scrolltoEnd();
     })
     socket.on('join chat', (name) => {
       if (document.querySelector('.messages')) {
-        let message = document.createElement('li');
-        message.className="announcement";
-        message.textContent = name + ' has entered the room';
-        document.querySelector('.messages').appendChild(message);
+        let announcement = document.createElement('li');
+        announcement.className="announcement";
+        announcement.textContent = name + ' has entered the room';
+        document.querySelector('.messages').appendChild(announcement);
         this.scrolltoEnd();
       }
     })
