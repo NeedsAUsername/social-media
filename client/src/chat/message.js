@@ -17,7 +17,7 @@ class Message extends React.Component {
           <div className="arrow-left"></div>
           <div className="content">
             {message.content.text}
-            {message.content.imageLink ? <img src={message.content.imageLink} /> : null}
+            {message.content.imageLink ? <img className="message-image" src={message.content.imageLink} /> : null}
           </div>
         </div>
       </div>
