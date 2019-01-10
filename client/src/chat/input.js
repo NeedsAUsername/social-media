@@ -5,7 +5,8 @@ class ChatInput extends React.Component {
     content: {
       text: "",
       imageLink: ""
-    }
+    },
+    imageInputShown: false
   }
   handleChange = (e) => {
     e.preventDefault();
@@ -26,11 +27,21 @@ class ChatInput extends React.Component {
       }
     })
   }
+  toggleImageInput = () => {
+    this.setState((prevState) => {
+      return {
+        imageInputShown: !prevState.imageInputShown
+      }
+    })
+  }
   render () {
     return (
       <form className="chat-form" onSubmit={this.handleSubmit}>
         <input className="input" name="text" onChange={this.handleChange} value={this.state.content.text} placeholder="Enter a message"/>
-        <input className="input" name="imageLink" onChange={this.handleChange} value={this.state.content.imageLink} placeholder="Enter an image link"/>
+          {this.state.imageInputShown ?
+           <input className="input" name="imageLink" onChange={this.handleChange} value={this.state.content.imageLink} placeholder="Enter an image link"/>
+           : null}
+         <i className="fas fa-image" onClick={this.toggleImageInput}></i>
         <button className="button">Send</button>
       </form>
     )
