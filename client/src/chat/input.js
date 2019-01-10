@@ -41,7 +41,7 @@ class ChatInput extends React.Component {
           {this.state.imageInputShown ?
            <input className="input" name="imageLink" onChange={this.handleChange} value={this.state.content.imageLink} placeholder="Enter an image link"/>
            : null}
-         <i className="fas fa-image" onClick={this.toggleImageInput}></i>
+         <i className="fas fa-image input icon" onClick={this.toggleImageInput}></i>
         <button className="button">Send</button>
       </form>
     )

@@ -26,6 +26,9 @@
 .input:focus {
   outline: 0;
 }
+input:hover {
+  border-color: red;
+}
 .navbar {
   display: flex;
   flex-direction: row;
@@ -78,6 +81,9 @@
   font-size: 42px;
   transform: rotate(45deg);
   cursor: pointer;
+}
+.icon {
+  max-width: 50px;
 }
 
 @media only screen and (min-width: 640px) {
