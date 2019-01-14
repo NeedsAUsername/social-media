@@ -85,7 +85,9 @@ input:hover {
 .icon {
   max-width: 50px;
 }
-
+.icon:hover {
+  background-color: #e6e6e6;
+}
 @media only screen and (min-width: 640px) {
   .modal-content {
     min-width: 300px;
