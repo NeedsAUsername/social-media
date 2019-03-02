@@ -12,7 +12,6 @@ class Navbar extends React.Component {
     this.props.routes.map((route, index) => <li><NavLink key={index} className="navlink" to={route.path} exact activeStyle={this.current()}><span className="route-name">{route.name}</span><i className={route.icon}></i></NavLink></li>)
   )
   render () {
-    // Replace navbar with site title later
     return (
       <nav className="navbar">
         <h1>Chat'nPost<i class="far fa-comments"></i></h1>
