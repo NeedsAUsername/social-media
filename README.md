@@ -12,6 +12,8 @@ create an .env file at root with the following (to access database):
 
 MONGO_URI="//contributor:password1@ds229878.mlab.com:29878/social-media"
 
+ANONYMOUS_ACCOUNT_ID="5c1c5c8ab659e24b82f4f7a8"
+
 
 to start Express server:
 $ npm run server
