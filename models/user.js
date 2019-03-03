@@ -3,7 +3,7 @@ const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 
 mongoose.set('useCreateIndex', true);
-mongoose.connect('mongodb:' + process.env.MONGO_URI, { useNewUrlParser: true });
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true });
 
 let PostSchema = new mongoose.Schema({
   title: {
@@ -16,7 +16,7 @@ let PostSchema = new mongoose.Schema({
   },
   date: {
     type: String,
-    required: true 
+    required: true
   }
 })
 let UserSchema = new mongoose.Schema({
