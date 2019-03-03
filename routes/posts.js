@@ -38,8 +38,11 @@ postsRouter.post('/guest', (req, res) => {
   let date = `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
   let post = {...req.body.post, date: date}
   // Account that holds all anonymous posts
-  User.findByIdAndUpdate('5c1c5c8ab659e24b82f4f7a8', {$push: {posts: post}}, {new: true})
-  .then(user => res.json(user))
+  let anonymousAccountId = process.env.ANONYMOUS_ACCOUNT_ID;
+  User.findByIdAndUpdate(anonymousAccountId, {$push: {posts: post}}, {new: true})
+  .then(user => {
+    res.json(user)
+  })
   .catch(err => res.status(500).json({error: err}))
 })
 
