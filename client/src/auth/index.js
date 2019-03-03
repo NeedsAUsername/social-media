@@ -43,7 +43,7 @@ class Auth extends React.Component {
   renderLogOut = () => (
     <div>
       <h2>{this.props.userName}({this.props.email})</h2>
-      <button onClick={this.props.logout}>Logout</button>
+      <button onClick={()=> {this.hide();this.props.logout()}}>Logout</button>
     </div>
   )
   render () {
